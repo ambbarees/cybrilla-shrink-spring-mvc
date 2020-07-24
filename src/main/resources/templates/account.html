@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Shrink!</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="/style.css"/>
+</head>
+
+<body>
+    <form action="/logout" method="post">
+        <button type="submit">logout</button>
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>	
+    </form>
+    <p>Hi <span th:text="${message}"></span>, Welcome! 
+    </p>
+    <p th:text="${key}" class="success"></p>
+    <form action="/account/generate-new-key" method="post">
+        <button type="submit">Generate New API Key</button>
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>	
+    </form>
+    <p>Note : Generating a new key will invalidate your old one. You cannot retrieve the same key again for security reasons. </p>
+
+    <h3>API Guide</h3>
+
+    <p>Resource - http://localhost:8080/shrink</p>
+    <p>Method - GET</p>
+    <h4>Parameters</h4>
+    <ul>
+        <li>key</li>
+        <li>url</li>
+    </ul>
+    <p>
+    <h4> Response</h4>
+
+        <div style="padding-left: 25px;"> 
+            <p>Type - JSON</p>
+        	Keys
+            <ul>
+                <li>error</li>
+                <li>url</li>
+            </ul>
+        </div>
+    </p>
+    
+
+    <h3>Samples</h3>
+    Replace [keyplaceholder] with your key.
+    <p>
+    <li>
+        <a
+            href="http://localhost:8080/shrink?key=keyplaceholder&url=https://google.com">http://localhost:8080/shrink?key=keyplaceholder&url=https://cybrilla.com</a>
+            <li>
+            <a
+            href="http://localhost:8080/shrink?key=keyplaceholder&url=https://google.com">http://localhost:8080/shrink?key=keyplaceholder&url=https://google.com</a>
+    </p>
+</body>
+
+</html>
